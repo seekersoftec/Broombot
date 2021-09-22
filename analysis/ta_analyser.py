@@ -1,13 +1,11 @@
 # import required modules
-import abc
 import btalib
-
 import pandas as pd
 
 #
 #
+#
 
-# TA master analyser
 #
 #
 # Read a csv file into a pandas dataframe
@@ -26,7 +24,7 @@ df = df.join([rsi, macd])
 #
 indicators = btalib.get_indicators()
 # ac = indicators[0](df)
-print(indicators[0].__doc__)
+# print(indicators[0].__doc__)
 
 # print(df.tail(5))
 #
@@ -34,34 +32,20 @@ print(indicators[0].__doc__)
 #
 #
 
+#
+# TA master analyser
+#
+
 
 class TechnicalAnalyser():
     """ class for calculating technical analysis indicators """
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, dataframe: pd.DataFrame):
+        pass
 
-    def eval_algorithm(self, **kwargs):
-        """ Evaluates TA algorithm """
+    def eval(self, **kwargs) -> pd.DataFrame:
+        """ Evaluates TA algorithms and returns a dataframe """
         return
 
+
 #
-#
-
-
-class TechnicalAnalysis(abc.ABC):
-    """ Abstract class for calculating technical analysis indicators """
-
-    @staticmethod
-    @abc.abstractmethod
-    def eval_algorithm(*args, **kwargs):
-        """ Evaluates TA algorithm """
-
-    @staticmethod
-    @abc.abstractmethod
-    def eval_from_dataframe(dataframe):
-        """ Evaluates TA algorithm from JSON
-
-        Args:
-            json: List of dates where each entry is a dict of raw market data.
-        """
