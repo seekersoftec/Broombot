@@ -49,3 +49,21 @@ class TechnicalAnalyser():
 
 
 #
+#
+class MI(btalib.Indicator.MetaIndicator):
+    def __init__(self):
+        super().__init__()
+
+    def ve(self):
+        pass
+
+
+#
+#
+# Get technical analyses based on 120 indicators,
+# 56 canlestick pattern detectors, 32 strategy alerts that are not provided by any other platform.
+#
+#
+#
+#
+#
