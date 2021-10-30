@@ -1,8 +1,9 @@
 import abc
 
+
 class TechnicalAnalysis(abc.ABC):
     """ Abstract class for calculating technical analysis indicators """
-    
+
     @staticmethod
     @abc.abstractmethod
     def eval_algorithm(*args, **kwargs):
@@ -16,3 +17,10 @@ class TechnicalAnalysis(abc.ABC):
         Args:
             json: List of dates where each entry is a dict of raw market data.
         """
+
+
+# On Balance Volume
+# Relative Strength Index
+# Simple Moving Average
+# Stochastic Oscillator
+#

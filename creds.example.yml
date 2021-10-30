@@ -3,14 +3,8 @@
 # Bad:
 #   access_key:myaccess_key
 # Good:
-#   access_key: myaccess_key 
+#   access_key: myaccess_key
 
-
-test:
+creds:
   access_key: replace_me
   secret_key: replace_me
-  
-prod:
-  access_key: replace_me
-  secret_key: replace_me
-

@@ -1,92 +1,96 @@
-# Main
-# call everything from here
-
-
-# import required libraries
-import investpy
-from telethon import TelegramClient, events, sync
-#
-import datetime
+import argparse
+from datetime import datetime as dt
 import pandas as pd
+from broombot import market
+from broombot import models
+
+"""
+Predicts the next market trend based on the markets history
+"""
 
 
-#
-# Remember to use your own values from my.telegram.org!
-telegram_api_id = 2236382
-telegram_api_hash = '53f80ff7bd3e47b6f9b29235ac86e2ff'
-
-
-# Here you define the target channel(s) that you want to listen to [https://t.me/<channel_name>]:
-base_channel_url = 'https://t.me'
-user_other_input_channels = ['me',
-                             f'{base_channel_url}/pancakeswapinstant',
-                             f'{base_channel_url}/uniswapinstant',
-                             f'{base_channel_url}/dex_list',
-                             f'{base_channel_url}/mycryptopedia',
-                             f'{base_channel_url}/scalpexindexbot']
-
-user_fx_input_channels = ['me',
-                          #   'Master Scalping',
-                          'TEAM OF TRADERS',
-                          'Xauusd Master accout management',
-                          f'{base_channel_url}/goldbullTeam',
-                          f'{base_channel_url}/joinchat/AAAAAFQZnXQ_Pw5BGDY7ug',
-                          f'{base_channel_url}/joinchat/E71TlyXs2PU1ZmM0']
-
-intervals = ['1min', '5mins', '15mins', '30mins',
-             '1hour', '5hours', 'daily', 'weekly', 'monthly']
-
-telegram_client = TelegramClient('anon', telegram_api_id, telegram_api_hash)
-
-
-@telegram_client.on(events.NewMessage(chats=tuple(user_other_input_channels)))
-async def SocialInvestorListener(event):
-    """
-        SocialInvestorListener
-
-        Listen to message signals from targeted channel(s) on telegram
-        and cross check it with the signal data from Investing.com
-    """
-
-    # Get message text
-    new_message = event.message.message
-    #
-    # Check investing.com
-    search_result = investpy.search_quotes(
-        text='xau/usd', products=['currencies'], n_results=1)
-    print(search_result)
-    information = search_result.retrieve_information()["symbol"]
-    print(information)
-    #
-    #
-    # 'XAU/USD'.replace('/','_')
-    # '{time},{complete},{o},{h},{l},{c},{v}' is the format of the data
-    # df = pd.read_csv('2006-day-001.txt', columns=['time', 'complete', 'open','high','low', 'close', 'volume'], parse_dates=True, index_col='time')
-    # simple_technical_analyzer(df)
-    #
-    recent_data = search_result.retrieve_recent_data()
-    print(recent_data)
-    #
-    technical_indicators = {}
-    for interval in intervals:
-        # confirm it by adding some other indicators to the dataframe
-        #
-        technical_indicators[interval] = search_result.retrieve_technical_indicators(
-            interval=interval)
-        print(technical_indicators)
-    #
-    # await telegram_client.forward_messages(entity='me', messages=new_message)
-    print('{}'.format(new_message))
+def get_args():
+    today = dt.now()
+    parser = argparse.ArgumentParser(
+        description='Predict the next crypto market trend.')
+    parser.add_argument('-m', '--model', default='random_forest',
+                        help=('Machine learning model to use on market data'))
+    parser.add_argument('-u', '--unit', default='month',
+                        help=('Time unit to go back: '
+                              'second, minute, hour, day, week, month, year'))
+    parser.add_argument('-c', '--count', default=6, type=int,
+                        help=('Number of "units" to go back '
+                              '(behind the set date/now)'))
+    parser.add_argument('-pd', '--period', default=86400, type=int,
+                        help=('Number of seconds for each candlestick: '
+                              '300, 900, 1800, 7200, 14400, 86400 only valid'))
+    parser.add_argument('-pn', '--partition', default=14, type=int,
+                        help=('Number of candlesticks per '
+                              'technical analysis calculation'))
+    parser.add_argument('-sy', '--symbol', default='USDT_ADA',
+                        help=('Currency pair, symbol, or ticker, from Poloniex'
+                              'Examples: USDT_BTC, ETH_ZRX, BTC_XRP'))
+    parser.add_argument('-sd', '--seed', default=None, type=int,
+                        help=('Random state seed to be used when generating '
+                              'the Random Forest and training/test sets'))
+    parser.add_argument('-l', '--long', nargs='*',
+                        help=('List of features to enable longer calculations. '
+                              'Example "--long rsi": 14 day RSI -> 28 day RSI'))
+    parser.add_argument('-d', '--delta', default=25, type=int,
+                        help=('Price buffer in the neutral zone before'
+                              'classifying a trend as bullish or bearish'))
+    parser.add_argument('-t', '--trees', default=10, type=int,
+                        help=('Number of trees (estimators) to generate in '
+                              'the Random Forest, higher is usually better'))
+    parser.add_argument('-j', '--jobs', default=1, type=int,
+                        help=('Number of jobs (CPUs for multithreading) when '
+                              'processing model fits and predictions'))
+    parser.add_argument('--proba', default=False, action='store_true',
+                        help='Display probabilities of the predicted trend')
+    parser.add_argument('--proba_log', default=False, action='store_true',
+                        help=('Display logarithmic probabilities of the '
+                              'predicted trend'))
+    return parser.parse_args()
 
 
 def main():
-    telegram_client.start()
-    telegram_client.run_until_disconnected()
+    args = get_args()
+    assert args.partition > 0, 'The data must be partitioned!'
+
+    m = market.Market(symbol=args.symbol, unit=args.unit,
+                      count=args.count, period=args.period)
+    features = m.set_features(partition=args.partition)
+    if args.long is not None:
+        features = m.set_long_features(features,
+                                       columns_to_set=args.long,
+                                       partition=args.partition)
+
+    targets = market.set_targets(features, delta=args.delta)
+    features = features.drop(['close'], axis=1)
+
+    model = market.setup_model(features[:-1], targets,
+                               model_type=args.model.lower(),
+                               seed=args.seed,
+                               n_estimators=args.trees,
+                               n_jobs=args.jobs)
+
+    # Remember the entry we didn't train?  Predict it.
+    next_date = features.tail(1)
+
+    # TODO: Reimplement display of confusion matrix and feature importances
+    acc = model.accuracy(model.features.test, model.targets.test)
+    print('Test Set Accuracy: {0:.3f}%'.format(100 * acc))
+
+    trends = model._predict_trends(next_date)
+    print('Predicted Trend: {0}'.format(market.target_code_to_name(trends[0])))
+
+    if args.proba:
+        probas = model._predict_probas(next_date)
+        print('Probability: {0}'.format(probas[0]))
+    if args.proba_log:
+        logs = model._predict_logs(next_date)
+        print('Log Probability: {0}'.format(logs[0]))
 
 
 if __name__ == '__main__':
-    main()
-
-# df = pd.read_csv(os.getcwd()+'/DATASETS/XAU_USD/XAU_USD_H1.csv', names=['time', 'complete', 'open',
-#                                                                         'high', 'low', 'close', 'volume'], parse_dates=True, index_col='time')
-# simple_technical_analyzer(df)
+    raise SystemExit(main())
