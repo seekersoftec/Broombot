@@ -4,6 +4,9 @@ import pandas as pd
 
 
 def simple_technical_analyzer(dataframe: pd.DataFrame) -> pd.DataFrame:
+    """
+        Simple Technical Analyzer
+    """
     macd = btalib.macd(dataframe.close, pfast=7,
                        pslow=9, psignal=7)  # MACD(7,9,7)
     atr = btalib.atr(dataframe.high, dataframe.low,

@@ -104,6 +104,3 @@ class BinanceCollector:
         # print('All caught up..!')
 
         return data_df
-
-
-#

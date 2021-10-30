@@ -4,15 +4,15 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 #
-from speculator.features.OBV import OBV
-from speculator.features.RSI import RSI
-from speculator.features.SMA import SMA
-from speculator.features.SO import SO
+from broombot.features.OBV import OBV
+from broombot.features.RSI import RSI
+from broombot.features.SMA import SMA
+from broombot.features.SO import SO
 #
-import speculator.models.random_forest as rf
-import speculator.models.deep_neural_network as dnn
+import broombot.models.random_forest as rf
+import broombot.models.deep_neural_network as dnn
 #
-from speculator.data import poloniex
+from broombot.data import poloniex
 
 # Enum-like object with 1:1 mapping.  Converts a readable
 # market trend like 'bearish' to an int that is easier to parse.
