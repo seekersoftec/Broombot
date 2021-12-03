@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<!--
+-- Copyright 2011, Algosport Ltd, www.betstatz.com | www.betstatz.co.uk
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="HandheldFriendly" content="true"/>
+<meta name="author" content="betstatz"/>    <meta name="description" content="Our Football match simulator lets you combine your opinions with our statistical models to give you the ultimate football predictions."/>
+	<meta name="keywords" content="betstats, bet stats, football simulator, football prediction, football predictions, football tips, football odds">
+	
+    <link rel="shortcut icon" href="/favicon.ico"/>
+
+    <title>Football Simulator - Football Predictions, Football Tips, Football Stats | betstatz.com</title>
+
+    <!-- Bootstrap CSS -->
+<link href="/libs/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="/libs/bootstrap-switch-master/css/bootstrap3/bootstrap-switch.css" rel="stylesheet">
+<link href="/libs/bootstrap-select/bootstrap-select.css" rel="stylesheet" type="text/css">
+
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+
+<link rel="stylesheet" type="text/css" href="/css/betstatz22062019.css" />
+
+<!-- FontAwesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!-- Google Webfonts -->
+<link href='http://fonts.googleapis.com/css?family=Carrois+Gothic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:500' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+
+<!-- Back to top anchor-->
+<a id="top"></a>	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+  </head>
+  
+  <body>
+	<div id='page'>
+		<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '277087499322149',
+      xfbml      : true,
+      version    : 'v2.7'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+<div class="navbar-wrapper">
+  <div class="container-no-pad">
+	<div id='logo' class="container-fluid text-center">
+		<div class='hidden-xs'>
+			<div class='col-xs-3'>
+				<!--<div id='email'>
+					<div id='emailText'>
+						<i>Subscribe to receive free predictions</i>
+					</div>
+					<div id='emailBox' class="input-group input-group-sm">
+						<input id='emailTextbox' type="text" class="form-control" placeholder="Email Address" aria-describedby="sizing-addon3">
+						<button id='emailButton' class='btn btn-green btn-sm' onclick='subscribe()'>GO</button>
+					</div>
+				</div>-->
+			</div>
+			<div class='col-xs-6'>
+				<a href="http://www.betstatz.com">
+					<img src="/images/logo.jpg" alt='betstatz.com - before you bet on it betstatz it'/>
+				</a>
+			</div>
+			<div id='social' class='col-xs-3'>				
+				<a href="http://www.facebook.com/betstatz">
+					<i class="fa fa-facebook"></i>
+				</a>
+				<a href="http://www.twitter.com/betstatz">
+					<i class="fa fa-twitter"></i>
+				</a>
+				<a href="mailto:info@betstatz.com">
+					<i class="fa fa-envelope"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row-offcanvas row-offcanvas-right">
+		<div id='main-nav' class="hidden-xs">
+			<nav class="navbar navbar-default label-black" role="navigation">
+				<ul class="nav navbar-nav label-black">
+					<li ><a href="/">Home</a></li>
+					<li ><a href="/about-us">About</a></li>
+					<li  class="dropdown">
+					  <a class="dropdown-toggle" data-toggle="dropdown">Stats <b class="caret"></b></a>
+					  <ul class="dropdown-menu sub-nav">
+						<li><a href="/team-stats">Team Stats</a></li>
+							<li><a href="/form-guide">Form Guide</a></li>
+							<li><a href="/season-review">Season Review</a></li>
+					  </ul>
+					</li>
+					<li class="active"><a href="/simulator">Simulator</a></li>
+					<li  class="dropdown">
+					  <a class="dropdown-toggle" data-toggle="dropdown">Predictions <b class="caret"></b></a>
+					  <ul class="dropdown-menu sub-nav">
+						<li><a href="/best-bets">Babb's Best Bets</a></li>
+						<li><a href="/predictions">All Predictions</a></li>
+					  </ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	
+		<div id='mob-nav' class='visible-xs'>
+			<div class="navbar navbar-default label-black" role="navigation">
+				<div>
+					<div class="navbar-header">
+						<div id='sideMenuButtonContainer'>
+							<button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navbar-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+						</div>
+						<div id='mobLogoContainer'>
+							<a href="http://www.betstatz.com">
+								<img src="/images/logo_mob_transparent.png" alt='betstatz.com - before you bet on it betstatz it'/>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 col-sm-3 sidebar-offcanvas showhide navbar-collapse" id="sidebar" role="navigation" style="">
+				<div class="sidebar-nav">
+					<ul class="nav navbar-nav">
+						<li id='sidebar-title' class='label-black'>
+							<div id='mobSocial'>
+								Menu
+								<i class="fa fa-facebook" onclick='window.location="http://www.facebook.com/betstatz"'></i>
+								<i class="fa fa-twitter" onclick='window.location="http://www.twitter.com/betstatz"'></i>
+							</div>
+						</li>
+						<li ><a href="/">Home</a></li>
+						<li ><a href="/about-us">About</a></li>
+						<li  class="dropdown">
+						  <a class="dropdown-toggle" data-toggle="dropdown">Stats <b class="caret"></b></a>
+						  <ul class="dropdown-menu sub-nav">
+							<li><a href="/team-stats">Team Stats</a></li>
+							<li><a href="/form-guide">Form Guide</a></li>
+							<li><a href="/season-review">Season Review</a></li>
+						  </ul>
+						</li>
+						<li class="active"><a href="/simulator">Simulator</a></li>
+						<li  class="dropdown">
+						  <a class="dropdown-toggle" data-toggle="dropdown">Predictions <b class="caret"></b></a>
+						  <ul class="dropdown-menu sub-nav">
+							<li><a href="/best-bets">Babb's Best Bets</a></li>
+							<li><a href="/predictions">All Predictions</a></li>
+						  </ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--<div id='email-xs' class='breadcrumbContainer label-green hidden-lg hidden-md hidden-sm col-xs-4'>
+				
+		<span id='emailInputs-xs' class="input-group input-group-sm">
+			<div id='emailText-xs'><i>Subscribe to receive free predictions</i></div>
+			<input id='emailTextbox-xs' type="text" class="form-control" placeholder="Email Address" aria-describedby="sizing-addon3">
+			<button id='emailButton-xs' class='btn btn-red btn-sm' onclick='subscribexs()'>JOIN</button>
+		</span>
+		<div id='emailStatus-xs'></div>
+	</div>-->
+  </div>
+</div>		<div id='page-content'>
+			<div id='mainPanel'>
+				<div class='container-no-pad text-center' style="min-height:400px; max-width:1080px;">
+					<div id='statsTopPanel' class='container-no-pad'>
+						<div class='col-sm-6 col-md-4'>
+							<div class='visible-xs'>
+								<h1>Football Simulator</h1>
+								<p>
+									Do you bet with your head or do you bet with your heart?
+									<br/>
+									With betstatz you don't need to choose.
+									<br/><br/>
+									We've developed a football match simulator which lets you combine your opinions with our statistical models
+									to give you the ultimate football predictions.
+								</p>
+							</div>
+						</div>
+						<div id='sideTitle' class='hidden-xs col-sm-8 col-sm-offset-2'>
+							<h1 class='col-xs-12'>Football Simulator</h1>
+							<p>
+								Do you bet with your head or do you bet with your heart?
+								<br/>
+								With betstatz you don't need to choose.
+								<br/><br/>
+								We've developed a football match simulator which lets you combine your opinions with our statistical models
+								to give you the ultimate football predictions. Once you've chosen a match, select the variables that you think will influence the outcome and hit
+								the <strong>Simulate Match</strong> button.
+							</p>
+						</div>
+					</div>
+				
+					<form method='POST' name='f1' action='/simulation'>
+						<div id='simPanel'>	
+							<div id='simTeamsPanel' class="panel panel-default panel-black">
+								<div class="panel-body">
+									<div id='nationsPanel' class='col-xs-12'>
+	
+<div class="panel panel-default panel-white">
+	<div id='nationPickerBar' class="panel-body">
+		<div class='nations'><div class='nationContainer'>
+				<a id='Belgium' class='nation' title='Belgium' alt='Belgium' style="background-image: url(/images/nations/Belgium.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='England' class='nation' title='England' alt='England' style="background-image: url(/images/nations/England.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='France' class='nation' title='France' alt='France' style="background-image: url(/images/nations/France.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Germany' class='nation' title='Germany' alt='Germany' style="background-image: url(/images/nations/Germany.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Greece' class='nation' title='Greece' alt='Greece' style="background-image: url(/images/nations/Greece.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Holland' class='nation' title='Holland' alt='Holland' style="background-image: url(/images/nations/Holland.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Italy' class='nation' title='Italy' alt='Italy' style="background-image: url(/images/nations/Italy.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Portugal' class='nation' title='Portugal' alt='Portugal' style="background-image: url(/images/nations/Portugal.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Scotland' class='nation' title='Scotland' alt='Scotland' style="background-image: url(/images/nations/Scotland.png); background-color:Transparent; "></a>
+			</div><div class='nationContainer'>
+				<a id='Spain' class='nation' title='Spain' alt='Spain' style="background-image: url(/images/nations/Spain.png); background-color:Transparent; "></a>
+			</div></div>	</div>
+</div>	
+	<div class='text-center container-no-pad'>
+		<input id='nationValue' type="hidden" name="nationValue" value="" />
+		<h3 id='nationLabel'><span class="label label-green">Click on a flag to start!</span></h3>
+	</div>
+	
+</div>
+<div id='leagues'>
+	<div class='text-center container-no-pad'>
+		<input id='leagueValue' type="hidden" name="leagueValue" value="" /> 
+		
+		<div id="leagueListContainer" class="btn-group col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+			<a id='leagueListButton' class="btn btn-green dropdown-toggle col-xs-12" data-toggle="dropdown">
+				...
+			</a>
+			<ul id='leagueList' class="dropdown-menu col-xs-12">
+				<li>No Data</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div id='rounds'>
+	<div class='text-center container-no-pad'>
+		<input id='roundValue' type="hidden" name="roundValue" value="" /> 
+		
+		<div id="roundListContainer" class="btn-group col-xs-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+			<a id='roundListButton' class="btn btn-green dropdown-toggle col-xs-12" data-toggle="dropdown">
+				...
+			</a>
+			<ul id='roundList' class="dropdown-menu col-xs-12">
+				<li>No Data</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<input id='isTournament' type="hidden" name="isTournament" value="0" /> <div id='homeVsAwayPicker' class='container-no-pad text-center'>
+	<div id='homeTeamContainer' class='col-xs-5'>
+		<input id='htValue' type="hidden" name="homeTeam" value="" /> 
+		<div id='ht' class="teamListContainer btn-group container-no-pad">
+			<a id='htListButton' class="btn btn-green dropdown-toggle col-xs-12 hidden-xs hidden-sm" data-toggle="dropdown">
+				...
+			</a>
+			<ul id='htList' class="dropdown-menu col-xs-12">
+				<li>No Data</li>
+			</ul>
+			<div class='col-xs-6'>
+				<select class="form-control visible-xs visible-sm label-green">
+					<option>No Data</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div id='vsContainer' class='col-xs-2'>vs</div>
+	<div id='awayTeamContainer' class='col-xs-5'>
+		<input id='atValue' type="hidden" name="awayTeam" value="" /> 
+		<div id='at' class="teamListContainer btn-group container-no-pad">
+			<a id='atListButton' class="btn btn-green dropdown-toggle col-xs-12 hidden-xs hidden-sm" data-toggle="dropdown">
+				...
+			</a>
+			<ul id='atList' class="dropdown-menu col-xs-12">
+				<li>No Data</li>
+			</ul>
+			<div class='col-xs-6'>
+				<select class="form-control visible-xs visible-sm label-green">
+					<option>No Data</option>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>								</div>
+							</div>
+							<div id='factorPanelSet'>
+								<div class="panel panel-default panel-black">
+									<div class="panel-body">
+										<div class='col-xs-12'>
+											<div class='factorGroupTitle'>
+												<span class="simToolTip" data-toggle="tooltip" data-placement="top"
+												title="Choose the number of previous matches to compare, the type of matches to compare and whether to give more weighting to the most recent matches.
+														These options will be factored into your simulation.">
+													Match Comparison Options
+												</span>
+											</div>
+										</div>
+										<div id='numMatchesPanel' class='col-xs-12 col-sm-5'>
+	<div id='lastMatchesContainer'>
+		Compare last
+		<span id='numMatchesLabel' class='label label-green'></span>
+		match results
+	</div>
+	<div id='numMatchesSlider'></div>
+	<input id='numMatches' name='numMatches' type='hidden' value='5'/>
+</div>
+<div id='selectorPanel' class='text-center'>
+	<div class='col-xs-6 col-sm-4'>
+		<div class='factorText'>Match Type</div>
+		<input id='matchType' type='hidden' name='matchType' value='0'/>
+		<div id='matchTypeContainer' class='btn-group col-xs-12 col-md-8 col-md-offset-2'>
+			<a id='matchTypeButton' class="btn btn-green dropdown-toggle col-xs-12" data-toggle="dropdown">
+				All Matches <span class="caret"></span>
+			</a>
+			<ul id='matchTypeDropdown' class="dropdown-menu col-xs-12">
+				<li><a id='allMatches' value='0'>All Matches</a></li>
+				<li><a id='HAMatches' value='1'>Home vs Away</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id='recentFormButtonContainer' class='col-xs-6 col-sm-3'>
+		<div class='factorText'>Recent Form Bias</div>
+		<input type="checkbox" id='recentFormCheckBox' name='recentFormCheckBox' value='0' onclick='toggleCheckbox()'/>
+		<input id='recentFormValue' type='hidden' name='recentFormValue' value='0'/>
+	</div>
+</div>									</div>
+								</div>
+								<div class="panel panel-default panel-black">
+	<div class="panel-body">
+		<div class='text-center'>
+			<div class='col-xs-12'>
+				<div class='factorGroupTitle'>
+					<span class="simToolTip" data-toggle="tooltip" data-placement="top"
+					title="Decide how much influence the crowd will have on the performance of the teams. This will be factored into your simulation.">
+						Crowd Influence
+					</span>
+				</div>
+			</div>
+			<div id='crowdBiasPanel' class='col-xs-12 col-md-8 col-md-offset-2'>
+				<div id='crowdBiasLabelContainer' class='col-xs-12'>
+					<span id='crowdBiasLabel' class='label label-green'>
+						...
+					</span>
+				</div>
+				<div id='crowdBiasSlider'></div>
+				<input id='crowdBias' type='hidden' name='crowdBias' value='0'/>
+			</div>
+		</div>
+	</div>
+</div><div class="panel panel-default panel-black col-sm-6">
+	<div class="panel-body" style='padding-left:0;padding-right:0;'>
+		<div id='motivationPanel' class='text-center'>
+			<div class='col-xs-12'>
+				<div class='factorGroupTitle'>
+					<span class="simToolTip" data-toggle="tooltip" data-placement="top"
+					title="Decide how motivated each team is to win the game using the sliders below. This will be factored into your simulation.">
+						Team Motivation
+					</span>
+				</div>
+			</div>
+			<div id='homeMotivationPanel' class='col-xs-6'>
+				<div class='factorText'><span class='htName'>Home</span></div>
+				<div id='homeMotivationSlider'></div>
+				<div id='homeMotivationLabelContainer'>
+					<span id='homeMotivationLabel' class='label label-green factorLabel'>
+						...
+					</span>
+				</div>
+				<input id='homeMotivation' type='hidden' name='homeMotivation' value='2'/>
+			</div>
+			<hr style='top:37px;'/>
+			<hr style='top:62px;'/>
+			<hr style='top:87px;'/>
+			<hr style='top:112px;'/>
+			<hr style='top:137px;'/>
+			<div id='awayMotivationPanel' class='col-xs-6'>
+				<div class='factorText'><span class='atName'>Away</span></div>
+				<div id='awayMotivationSlider'></div>
+				<div id='awayMotivationLabelContainer'>
+					<span id='awayMotivationLabel' class='label label-green factorLabel'>
+						...
+					</span>
+				</div>
+				<input id='awayMotivation' type='hidden' name='awayMotivation' value='2'/>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="panel panel-default panel-black col-sm-6">
+	<div class="panel-body" style='padding-left:0;padding-right:0;'>
+		<div id='tacticsPanel' class='text-center'>
+			<div class='col-xs-12'>
+				<div class='factorGroupTitle'>
+					<span class="simToolTip" data-toggle="tooltip" data-placement="top"
+					title="Decide how attacking or defensive each team will play using the sliders below. This will be factored into your simulation.">
+						Team Tactics
+					</span>
+				</div>
+			</div>
+			<div id='homeTacticsPanel' class='col-xs-6'>
+				<div class='factorText'><span class='htName'>Home</span></div>
+				<div id='homeTacticsSlider'></div>
+				<div id='homeTacticsLabelContainer'>
+					<span id='homeTacticsLabel' class='label label-green factorLabel'>
+						...
+					</span>
+				</div>
+				<input id='homeTactics' type='hidden' name='homeTactics' value='2'/>
+			</div>
+			<hr style='top:37px;'/>
+			<hr style='top:62px;'/>
+			<hr style='top:87px;'/>
+			<hr style='top:112px;'/>
+			<hr style='top:137px;'/>
+			<div id='awayTacticsPanel' class='col-xs-6'>
+				<div class='factorText'><span class='atName'>Away</span></div>
+				<div id='awayTacticsSlider'></div>
+				<div id='awayTacticsLabelContainer'>
+					<span id='awayTacticsLabel' class='label label-green factorLabel'>
+						...
+					</span>
+				</div>
+				<input id='awayTactics' type='hidden' name='awayTactics' value='2'/>
+			</div>
+		</div>
+	</div>
+</div>								<button id='simButton' type='submit' class='btn-green btn-lg' onclick='loadingIcon();'>Simulate Match</button>
+								<div id='loadingIcon'><i class="fa fa-circle-o-notch fa-spin"></i></div>
+							</div>
+							<div id="simulatorDisclaimer" class='col-xs-12'>
+								All betstatz simulator matches are hypothetical and do not represent real results.
+								Predictions are generated using historical trend analysis along with variable bias weightings based on user input.
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			
+						<!-- FOOTER -->
+<footer>
+	<div class='container-no-pad'>
+		<div class='col-xs-2 topContainer' style="padding:15px 0;">
+			<a id='backToTop' href="#top">
+				<div class='hidden-xs' style='padding-top: 6px; float: left; padding-left: 20px; font-size: 13px;'><i class="fa fa-chevron-circle-up"></i> Back to Top</div>
+				<div class='visible-xs' style='font-size:24px;'><i class="fa fa-chevron-circle-up"></i></div>
+			</a>
+		</div>
+		<div class='col-xs-8' style="padding:15px 0;">
+			<a target="_blank" rel="nofollow" href="http://www.gamcare.org.uk/"><img width="36" height="40" src="/images/gamcare-v2.png"></a>
+			<a target="_blank" rel="nofollow" href="https://www.begambleaware.org/"><img src="/images/begambleaware-logo.png" width="210"></a>
+		</div>
+		<div id="over18" class="col-xs-2" style="padding-top:15px; padding-left:20px;">
+			<img src="/images/over18.png">
+		</div>
+		<div class='col-xs-12'>
+				<a href="/terms/#privacy">Privacy</a> &middot;
+				<a href="/terms/#disclaimer">Disclaimer</a>&middot;
+				<a href="/sitemap">Sitemap</a>
+		</div>
+	</div>
+</footer>		</div>
+	</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<script src="/libs/jquery-ui-touch-punch/touch-punch.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="/libs/bootstrap-3.1.1-dist/js/bootstrap.min.js"></script>
+<script src="/libs/bootstrap-switch-master/js/bootstrap-switch.js"></script>
+<script type="text/javascript" src="/libs/bootstrap-select/bootstrap-select.js"></script>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-28543623-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script type="text/javascript" src="/js/header.js"></script>	<script type="text/javascript" src="/js/simulator.js"></script>
+	<script type="text/javascript">
+		window.currNation = '';
+		window.tipsOn = '0';
+	</script>
+  </body>
+</html>

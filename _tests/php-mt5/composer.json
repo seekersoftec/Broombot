@@ -1,0 +1,18 @@
+{
+    "name": "tarikh/php-mt5",
+    "description": "A Metatrader 5 Web API Wrapper for Laravel",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tarikh Agustia Ijudin",
+            "email": "agustia.tarikh150@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Tarikh\\PhpMeta\\": "src/"
+        }
+    },
+    "require": {}
+}
