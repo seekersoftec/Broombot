@@ -1,1 +1,1 @@
-from investing import *
+from .investing import *

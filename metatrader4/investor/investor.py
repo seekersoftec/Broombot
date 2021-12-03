@@ -1,8 +1,8 @@
 #
-from DWX_ZeroMQ_Connector_v2_0_1_RC8 import *
+# from DWX_ZeroMQ_Connector_v2_0_1_RC8 import *
 
 # Initialize Connector
-_zmq = DWX_ZeroMQ_Connector()
+# _zmq = DWX_ZeroMQ_Connector()
 #
 #
 """
@@ -20,8 +20,8 @@ _zmq = DWX_ZeroMQ_Connector()
 """
 #
 #
-Publish_Symbols = ["EURUSD", "GBPUSD", "USDJPY", "USDCAD",
-                   "AUDUSD", "NZDUSD", "USDCHF", "XAUUSD", "XAGUSD"]
+# Publish_Symbols = ["EURUSD", "GBPUSD", "USDJPY", "USDCAD",
+#                    "AUDUSD", "NZDUSD", "USDCHF", "XAUUSD", "XAGUSD"]
 #
 # Real-time BID/ASK prices
 # for symbol in Publish_Symbols:

@@ -6,9 +6,6 @@ import investpy
 # Data from investing.com
 #
 
-TIME_FRAMES = ['1min', '5mins', '15mins', '30mins',
-               '1hour', '5hours', 'daily', 'weekly', 'monthly']
-
 
 class Investing:
     """
@@ -16,6 +13,8 @@ class Investing:
     """
 
     def __init__(self):
+        self.TIME_FRAMES = ['1min', '5mins', '15mins', '30mins',
+                            '1hour', '5hours', 'daily', 'weekly', 'monthly']
         self.CURRENCY_TYPES = {
             'stocks': [
                 'get_stocks', 'get_stocks_list', 'get_stocks_dict',
